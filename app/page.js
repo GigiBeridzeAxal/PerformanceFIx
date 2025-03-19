@@ -20,12 +20,8 @@ const Footer = dynamic(() => import("./components/Footer"));
 const ContactOut = dynamic(() => import("./components/ContactOut"));
 
 export default function Home() {
-  const [offloading, setOffLoading] = useState(false);
+  const [offloading, setOffLoading] = useState(true);
 
-  useEffect(() => {
-    setOffLoading(false);
-    setTimeout(() => setOffLoading(true), 1000);
-  }, []);
 
   return (
     <main>

@@ -24,43 +24,7 @@ export const viewport = {
 };
 
 export async function generateMetadata() {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_POST_URL}/api/details/meta/${process.env.NEXT_PUBLIC_SITE_ID}`,
-      { cache: "force-cache" }
-    );
 
-    if (!res.ok) {
-      throw new Error(`API request failed with status ${res.status}`);
-    }
-
-    const data = await res.json();
-
-    const faviconAddress = data?.site_fav
-      ? `${process.env.NEXT_PUBLIC_CMS_URL}api/uploads/${data.site_fav}`
-      : "/favicon.ico";
-
-    return {
-      title: data?.site_title || "Pura+ | Ortopedia Fisioterapia Salud Belleza",
-      description:
-        data?.site_desc ||
-        "ortopedia cuidado pie rehabilitacion fitness medias varices salud belleza",
-      icons: {
-        icon: faviconAddress,
-      },
-    };
-  } catch (error) {
-    // Log more detailed errors
-    console.error("Error fetching metadata:", error);
-
-    return {
-      title: "Pura+ | Ortopedia Fisioterapia Salud Belleza",
-      description: "Error fetching metadata.",
-      icons: {
-        icon: "/favicon.ico",
-      },
-    };
-  }
 }
 
 export default function RootLayout({ children }) {
